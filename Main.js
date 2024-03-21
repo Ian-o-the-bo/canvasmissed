@@ -8,7 +8,7 @@ let main = async function (showBody,max) {
     document.body.innerHTML = null;
     //later on, missingSubs stores the missing assignments.
     let missingSubs;
-    await fetch(`https://uview.instructure.com/api/v1/users/self/missing_submissions?include[]=course&filter[]=submittable&per_page=${max}`, {
+    await fetch(`https://uview.instructure.com/api/v1/users/self/missing_submissions?include[]=course&filter[]=submittable&per_page=100`, {
         "headers": {
             "accept": "application/json, text/javascript, application/json+canvas-string-ids, */*; q=0.01",
             "accept-language": "en-US,en;q=0.9,es;q=0.8",
@@ -29,11 +29,12 @@ let main = async function (showBody,max) {
     }).then(result => result.json().then(resBody => missingSubs = resBody));
     //num is used to count the number of missing assignments
     let num;
-    num = subParser(missingSubs, showBody);
+    num = subParser(missingSubs, showBody,max);
     //numEl is a line of text that displays the number of missing assignments
     let numEl = document.createElement("strong");
     numEl.innerText = `you have ${num} missing assignments`;
     document.body.appendChild(numEl);
+    document.title=`Currently missing ${num} assignments`
 };
 //wrapper for runner function. This is needed so that the runner function can be stored separately
 function runner(max1=null,showBod=null,int1=null,saveConfig=false){
