@@ -31,8 +31,8 @@ let main = async function () {
     numEl.innerText = `you have "${num}" missing assignments`;
     document.body.appendChild(numEl);
 };
-main()
-let nmh = setInterval(main, ((parseFloat(prompt("how long between updates in min", "2"))) * 60000));
 let tempMax = parseInt(prompt("max to list", "1-100"));
 let max = tempMax || 100;
 let showBody=confirm("do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown)");
+main()
+let nmh = setInterval(main, ((parseFloat(prompt("how long between updates in min", "2"))) * 60000));
