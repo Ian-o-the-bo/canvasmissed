@@ -32,12 +32,16 @@ let main = async function (showBody,max) {
     numEl.innerText = `you have ${num} missing assignments`;
     document.body.appendChild(numEl);
 };
-function runner(max = null,showBody=null,int=null) {
+function runner(max = null,showBody=null,int=null,saveConfig=false) {
     if(max==null) {
         let tempMax = parseInt(prompt("max to list", "1-100"));
         max = tempMax || 100;
     }
     showBody = showBody || confirm("do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown)");
     main(showBody,max);
-    let nmh = setInterval(main, (int||((parseFloat(prompt("how long between updates in min", "2"))) * 60000)));
+    int= int||((parseFloat(prompt("how long between updates in min", "2"))) * 60000)
+    let nmh = setInterval(main, int);
+    if(saveConfig) {
+        localStorage["conf"]=JSON.stringify({"max":max,"showBody":showBody,"int":int})
+    }
 }
