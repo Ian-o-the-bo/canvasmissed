@@ -45,3 +45,10 @@ function runner(max = null,showBody=null,int=null,saveConfig=false) {
         localStorage["conf"]=JSON.stringify({"max":max,"showBody":showBody,"int":int})
     }
 }
+function editConf(max = null,showBody=null,int=null){
+    let tempMax = parseInt(prompt("max to list", max||"1-100"));
+    max = tempMax || 100;
+    showBody = confirm(`do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown) currently, you ${showBody ? "are" : "aren't"} showing the body`);
+    int= ((parseFloat(prompt("how long between updates in min", int/60000||"2"))) * 60000)
+    localStorage["conf"]=JSON.stringify({"max":max,"showBody":showBody,"int":int})
+}
