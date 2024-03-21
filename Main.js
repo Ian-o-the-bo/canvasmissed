@@ -1,4 +1,4 @@
-let trashVar = await import("./parser");
+let trashVar = await import("https://raw.githubusercontent.com/Ian-o-the-bo/canvasmissed/debug/parser.js");
 debugger;
 let main = async function () {
     document.body.innerHTML = null;
