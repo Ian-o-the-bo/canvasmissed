@@ -1,0 +1,31 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.3
+// @description  try to take over the world!
+// @author       You
+// @match        https://uview.instructure.com/hacked
+// @require      https://ian-o-the-bo.github.io/canvasmissed/Main.js
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        GM_registerMenuCommand
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    GM_registerMenuCommand ("Run with Config", function(e) {
+        if(localStorage["conf"]==null){
+            runner(null,null,null,true)
+        } else {
+            let conf=JSON.parse(localStorage["conf"]);
+            runner(conf.max,conf.showBody,conf.int)
+        }
+    }, "r");
+    GM_registerMenuCommand ("Edit Config", function(e) {
+        if(localStorage["conf"]==null){
+            editConf();
+        } else {
+            let conf=JSON.parse(localStorage["conf"]);
+            editConf(conf.max,conf.showBody,conf.int)
+        }
+    }, "e");
+})();
