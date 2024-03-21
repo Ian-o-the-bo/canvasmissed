@@ -1,4 +1,4 @@
-import {subParser} from "./parser";
+let subParser = await import("./parser");
 
 let main = async function () {
     document.body.innerHTML = null;
