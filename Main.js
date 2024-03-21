@@ -29,7 +29,7 @@ let main = async function () {
     num = subParser(missingSubs, showBody);
     //numEl is a line of text that displays the number of missing assignments
     let numEl = document.createElement("strong");
-    numEl.innerText = `you have "${num}" missing assignments`;
+    numEl.innerText = `you have ${num} missing assignments`;
     document.body.appendChild(numEl);
 };
 let tempMax = parseInt(prompt("max to list", "1-100"));
