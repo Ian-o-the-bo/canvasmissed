@@ -32,7 +32,7 @@ let main = async function (showBody,max) {
     numEl.innerText = `you have ${num} missing assignments`;
     document.body.appendChild(numEl);
 };
-function runner(max = null,showBody,int) {
+function runner(max = null,showBody=null,int=null) {
     if(max==null) {
         let tempMax = parseInt(prompt("max to list", "1-100"));
         max = tempMax || 100;
