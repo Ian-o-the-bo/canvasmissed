@@ -1,4 +1,4 @@
-function subParser(missingSubs) {
+function subParser(missingSubs, showBody) {
     let count;
     count = 0;
     missingSubs.forEach(
@@ -27,3 +27,4 @@ function subParser(missingSubs) {
         });
     return count;
 }
+export {subParser};

@@ -1,5 +1,9 @@
-let ok = async function () {
+import {subParser} from "./parser";
+
+let main = async function () {
     document.body.innerHTML = null;
+    //later on, missingSubs stores the missing assignments.
+    let missingSubs;
     await fetch(`https://uview.instructure.com/api/v1/users/self/missing_submissions?include[]=course&filter[]=submittable&per_page=${max}`, {
         "headers": {
             "accept": "application/json, text/javascript, application/json+canvas-string-ids, */*; q=0.01",
@@ -21,13 +25,14 @@ let ok = async function () {
     }).then(result => result.json().then(resBody => missingSubs = resBody));
     //num is used to count the number of missing assignments
     let num;
-
+    num = subParser(missingSubs, showBody);
     //numEl is a line of text that displays the number of missing assignments
     let numEl = document.createElement("strong");
     numEl.innerText = `you have "${num}" missing assignments`;
     document.body.appendChild(numEl);
 };
-let nmh = setInterval(ok, ((parseFloat(prompt("how long between updates in min", "2"))) * 60000));
-tempMax = parseInt(prompt("max to list", "1-100"))
+main()
+let nmh = setInterval(main, ((parseFloat(prompt("how long between updates in min", "2"))) * 60000));
+let tempMax = parseInt(prompt("max to list", "1-100"));
 let max = tempMax || 100;
-let showBody=confirm("do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown)")
+let showBody=confirm("do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown)");
