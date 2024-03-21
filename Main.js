@@ -1,5 +1,5 @@
-let subParser = await import("./parser");
-
+let trashVar = await import("./parser");
+debugger;
 let main = async function () {
     document.body.innerHTML = null;
     //later on, missingSubs stores the missing assignments.
