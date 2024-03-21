@@ -1,7 +1,7 @@
 let trashVar = await import("https://ian-o-the-bo.github.io/canvasmissed/parser.js");
 let subParser=trashVar.subParser;
 debugger;
-let main = async function () {
+let main = async function (showBody,max) {
     document.body.innerHTML = null;
     //later on, missingSubs stores the missing assignments.
     let missingSubs;
@@ -32,8 +32,12 @@ let main = async function () {
     numEl.innerText = `you have ${num} missing assignments`;
     document.body.appendChild(numEl);
 };
-let tempMax = parseInt(prompt("max to list", "1-100"));
-let max = tempMax || 100;
-let showBody=confirm("do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown)");
-main()
-let nmh = setInterval(main, ((parseFloat(prompt("how long between updates in min", "2"))) * 60000));
+function runner(max = null,showBody,int) {
+    if(max==null) {
+        let tempMax = parseInt(prompt("max to list", "1-100"));
+        max = tempMax || 100;
+    }
+    showBody = showBody || confirm("do you want the body of the assignment to be shown? (if you select cancel, only the assignment title will be shown)");
+    main(showBody,max);
+    let nmh = setInterval(main, (int||((parseFloat(prompt("how long between updates in min", "2"))) * 60000)));
+}
