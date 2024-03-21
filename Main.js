@@ -2,6 +2,7 @@ let import1 = await import("https://ian-o-the-bo.github.io/canvasmissed/parser.j
 let import2 = await import("https://ian-o-the-bo.github.io/canvasmissed/runandconf.js")
 let subParser=import1.subParser;
 let editConf=import2.editConf;
+let temprun=import2.runner;
 debugger;
 let main = async function (showBody,max) {
     document.body.innerHTML = null;
@@ -35,6 +36,6 @@ let main = async function (showBody,max) {
     document.body.appendChild(numEl);
 };
 //wrapper for runner function. This is needed so that the runner function can be stored separately
-let runner=function(max=null,showBody=null,int=null,saveConfig=false){
-    import2.runner(max,showBody,int,saveConfig,main);
+function runner(max1=null,showBod=null,int1=null,saveConfig=false){
+    temprun(max1,showBod,int1,saveConfig,main);
 }
